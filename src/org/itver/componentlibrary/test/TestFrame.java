@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.itver.test;
+package org.itver.componentlibrary.test;
 
 /**
  *
@@ -27,7 +27,7 @@ public class TestFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        codeEditor1 = new org.itver.component.CodeEditor();
+        codeEditor1 = new org.itver.componentlibrary.component.CodeEditor();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(codeEditor1, java.awt.BorderLayout.CENTER);
@@ -71,6 +71,6 @@ public class TestFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.itver.component.CodeEditor codeEditor1;
+    private org.itver.componentlibrary.component.CodeEditor codeEditor1;
     // End of variables declaration//GEN-END:variables
 }

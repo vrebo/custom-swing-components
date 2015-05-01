@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.itver.component;
+package org.itver.componentlibrary.component;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -60,7 +60,7 @@ public class CodeEditor extends javax.swing.JPanel {
 
         codeArea.setColumns(20);
         codeArea.setRows(5);
-        codeArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        codeArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel.add(codeArea, java.awt.BorderLayout.CENTER);
 
         jScrollPane1.setViewportView(panel);

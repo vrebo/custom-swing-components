@@ -3,25 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.itver.component;
+package org.itver.componentlibrary.component;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.StyledDocument;
 
 /**
  *
  * @author vrebo
  */
-public class OutputPane2 extends javax.swing.JPanel {
+public class OutputPane extends javax.swing.JPanel {
 
     private String title;
 
@@ -30,14 +24,14 @@ public class OutputPane2 extends javax.swing.JPanel {
      *
      * @param title The title of the output pane to be shown.
      */
-    public OutputPane2(String title) {
+    public OutputPane(String title) {
         this.title = title;
         initComponents();
         _initComponents();
         initListeners();
     }
 
-    public OutputPane2() {
+    public OutputPane() {
         this("");
     }
 
@@ -50,31 +44,37 @@ public class OutputPane2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        wrapMenuItem = new javax.swing.JMenuItem();
-        clearMenuItem = new javax.swing.JMenuItem();
         contextMenu = new javax.swing.JPopupMenu();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        outputArea = new javax.swing.JTextPane();
-
-        wrapMenuItem.setText("jMenuItem1");
+        clearMenuItem = new javax.swing.JMenuItem();
+        wrapMenuItem = new javax.swing.JMenuItem();
+        scrollPane = new javax.swing.JScrollPane();
+        outputArea = new javax.swing.JTextArea();
 
         clearMenuItem.setText("jMenuItem1");
 
+        wrapMenuItem.setText("jMenuItem2");
+
         setBorder(javax.swing.BorderFactory.createTitledBorder(title));
+        setMinimumSize(new java.awt.Dimension(15, 20));
         setLayout(new java.awt.BorderLayout());
 
+        outputArea.setBackground(Color.BLACK);
+        outputArea.setColumns(20);
+        outputArea.setForeground(Color.GREEN);
+        outputArea.setRows(5);
         outputArea.setComponentPopupMenu(contextMenu);
-        jScrollPane1.setViewportView(outputArea);
+        outputArea.setMinimumSize(new java.awt.Dimension(10, 15));
+        scrollPane.setViewportView(outputArea);
 
-        add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        add(scrollPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem clearMenuItem;
     private javax.swing.JPopupMenu contextMenu;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane outputArea;
+    private javax.swing.JTextArea outputArea;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JMenuItem wrapMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -84,10 +84,8 @@ public class OutputPane2 extends javax.swing.JPanel {
         contextMenu.add(wrapMenuItem);
         contextMenu.add(clearMenuItem);
         outputArea.setEditable(false);
-        createStyles();
-        setPreferredSize(new Dimension(400, 200));
-        setMinimumSize(new Dimension(100, 100));
-        outputArea.setMinimumSize(new Dimension(100, 100));
+        outputArea.setRows(10);
+        outputArea.setColumns(35);
     }
 
     private void initListeners() {
@@ -101,41 +99,7 @@ public class OutputPane2 extends javax.swing.JPanel {
     }
 
     public void appendInfoMessage(String message) {
-        appendMessage(message, "information");
-    }
-
-    public void appendErrorMessage(String message) {
-        appendMessage(message, "error");
-    }
-
-    public void appendWarningMessage(String message) {
-        appendMessage(message, "warning");
-    }
-
-    private void appendMessage(String message, String style) {
-        try {
-            StyledDocument doc = outputArea.getStyledDocument();
-            doc.insertString(doc.getLength(), message, doc.getStyle(style));
-        } catch (BadLocationException ex) {
-        }
-    }
-
-    private void createStyles() {
-        StyledDocument doc = outputArea.getStyledDocument();
-        Style def = StyleContext.getDefaultStyleContext().
-                getStyle(StyleContext.DEFAULT_STYLE);
-        Style regular = doc.addStyle("regular", def);
-        StyleConstants.setFontFamily(def, "SansSerif");
-
-        Style s = doc.addStyle("information", regular);
-        StyleConstants.setForeground(s, Color.BLACK);
-
-        s = doc.addStyle("warning", regular);
-        StyleConstants.setForeground(s, Color.BLUE);
-
-        s = doc.addStyle("error", regular);
-        StyleConstants.setForeground(s, Color.RED);
-
+        outputArea.append(message);
     }
 
     private class ActionListenerImpl implements ActionListener {
